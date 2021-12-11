@@ -59,7 +59,8 @@ public class BonusController {
     public Optional<BonusDto> updateBonusFromParent (@RequestParam String title,
                                            @RequestParam Integer idParent,  //TODO надо обдумать с какого места отправить родителя в запрос
                                            @RequestParam Integer price){
-        return Optional.of(new BonusDto(bonusService.updateBonusFromParent(title,new Parent(),price)));
+        Parent parent = parentService.findById(idParent).get();
+        return Optional.of(new BonusDto(bonusService.updateBonusFromParent(title,parent,price)));
     }
 
     @GetMapping("/updateFromChild")
