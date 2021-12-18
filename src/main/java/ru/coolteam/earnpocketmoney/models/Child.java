@@ -4,12 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "children")
 @Data
 @NoArgsConstructor
-public class Child {
+public class Child extends UserEntity {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +23,15 @@ public class Child {
 
     @Column
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "id_role")
+    private Role role;
+
+    @Column(name = "wallet")
+    private Integer wallet;
+
+    @OneToMany(mappedBy = "child")
+    List<Task> tasks;
+
 }
