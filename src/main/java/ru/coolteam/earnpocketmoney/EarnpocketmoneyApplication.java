@@ -12,15 +12,14 @@ public class EarnpocketmoneyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EarnpocketmoneyApplication.class, args);
 	}
-
 }
 
 // небольшой костыль для таймлифа
-@Controller
-class IndexController {
-
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(){
-		return "index";
-	}
-}
+//@Controller
+//class IndexController {
+//
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String index(){
+//		return "index";
+//	}
+//}

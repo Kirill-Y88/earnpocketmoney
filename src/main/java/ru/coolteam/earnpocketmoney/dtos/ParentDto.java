@@ -2,7 +2,7 @@ package ru.coolteam.earnpocketmoney.dtos;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.coolteam.earnpocketmoney.models.Parent;
+import ru.coolteam.earnpocketmoney.model.Parent;
 
 @Data
 @NoArgsConstructor

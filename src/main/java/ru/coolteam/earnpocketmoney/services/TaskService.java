@@ -2,9 +2,9 @@ package ru.coolteam.earnpocketmoney.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.coolteam.earnpocketmoney.models.Child;
-import ru.coolteam.earnpocketmoney.models.Parent;
-import ru.coolteam.earnpocketmoney.models.Task;
+import ru.coolteam.earnpocketmoney.model.Child;
+import ru.coolteam.earnpocketmoney.model.Parent;
+import ru.coolteam.earnpocketmoney.model.Task;
 import ru.coolteam.earnpocketmoney.repositories.TaskRepository;
 
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class TaskService {
     private final TaskRepository taskRepository;
 
-    public Optional<Task> findById(Integer id) {
+    public Optional<Task> findById(Long id) {
         return taskRepository.findById(id);
     }
 

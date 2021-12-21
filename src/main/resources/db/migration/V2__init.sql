@@ -47,11 +47,11 @@ values
     ('child2', '222', 20),
     ('child3', '333', 55);
 
-insert into tasks (title, id_parent, id_child, cost)
+insert into tasks (id, title, id_parent, id_child, cost)
 values
-    ('Тестовая задача 1',1,1,2),
-    ('Brush teeth',1,2,15),
-    ('trow iut the trash',2,3,21);
+    (1L, 'Тестовая задача 1',1,1,2),
+    (2L, 'Brush teeth',1,2,15),
+    (3L, 'throw out the trash',2,3,21);
 
 
 insert into bonuses (title, id_parent, price)

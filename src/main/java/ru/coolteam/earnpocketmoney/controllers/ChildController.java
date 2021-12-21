@@ -1,11 +1,12 @@
 package ru.coolteam.earnpocketmoney.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.coolteam.earnpocketmoney.dtos.ChildDto;
-import ru.coolteam.earnpocketmoney.models.Bonus;
-import ru.coolteam.earnpocketmoney.models.Child;
-import ru.coolteam.earnpocketmoney.models.Task;
+import ru.coolteam.earnpocketmoney.model.Bonus;
+import ru.coolteam.earnpocketmoney.model.Child;
+import ru.coolteam.earnpocketmoney.model.Task;
 import ru.coolteam.earnpocketmoney.services.BonusService;
 import ru.coolteam.earnpocketmoney.services.ChildService;
 import ru.coolteam.earnpocketmoney.services.TaskService;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/children")
 public class ChildController {

@@ -102,7 +102,7 @@ input:focus::placeholder {
     margin-left: 10px;
 }
 
-.btn-coast, a.btn-coast {
+.btn-cost, a.btn-cost {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -233,7 +233,7 @@ input:focus::placeholder {
 
 
 /*  Блок оценка карточки */
-.task-coast {
+.task-cost {
     display: flex;
     justify-content: center;
     background-color: #828282;
@@ -247,7 +247,7 @@ input:focus::placeholder {
 
 
 /*  Оценка карточки */
-.coast {
+.cost {
     display: flex;
     justify-content: center;
     align-items: center;

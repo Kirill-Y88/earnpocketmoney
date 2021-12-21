@@ -1,4 +1,4 @@
-package ru.coolteam.earnpocketmoney.models;
+package ru.coolteam.earnpocketmoney.model;
 
 
 import lombok.Data;
@@ -16,7 +16,7 @@ public class Bonus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "title")
     private String title;
@@ -35,7 +35,7 @@ public class Bonus {
     @Column(name = "received_at")
     private LocalDateTime receivedAt;
 
-    public Bonus(Integer id, String title, Parent parent, Child child, Integer price, LocalDateTime receivedAt) {
+    public Bonus(Long id, String title, Parent parent, Child child, Integer price, LocalDateTime receivedAt) {
         this.id = id;
         this.title = title;
         this.parent = parent;
@@ -43,6 +43,4 @@ public class Bonus {
         this.price = price;
         this.receivedAt = receivedAt;
     }
-
-
 }

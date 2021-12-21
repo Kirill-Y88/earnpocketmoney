@@ -1,12 +1,13 @@
 package ru.coolteam.earnpocketmoney.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.coolteam.earnpocketmoney.dtos.BonusDto;
 import ru.coolteam.earnpocketmoney.dtos.TaskDto;
-import ru.coolteam.earnpocketmoney.models.Child;
-import ru.coolteam.earnpocketmoney.models.Parent;
-import ru.coolteam.earnpocketmoney.models.Task;
+import ru.coolteam.earnpocketmoney.model.Child;
+import ru.coolteam.earnpocketmoney.model.Parent;
+import ru.coolteam.earnpocketmoney.model.Task;
 import ru.coolteam.earnpocketmoney.services.ChildService;
 import ru.coolteam.earnpocketmoney.services.ParentService;
 import ru.coolteam.earnpocketmoney.services.TaskService;
@@ -16,17 +17,32 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/tasks")
+@RequestMapping("/api/v2/tasks")
 public class TaskController {
     private final TaskService taskService;
     private final ParentService parentService;
     private final ChildService childService;
 
-    @GetMapping()
-    public List<TaskDto> getAllTasks() {
-        return taskService.findAll().stream().map(TaskDto::new).collect(Collectors.toList());
+    @GetMapping("/all")
+    public String getAllTasks(Model model) {
+        List<TaskDto> tasks = taskService.findAll()
+                .stream().
+                map(TaskDto::new)
+                .collect(Collectors.toList());
+
+        model.addAttribute("tasks", tasks);
+        return "tasks";
+    }
+
+    @GetMapping("/{id}")
+    public String showTaskInfo (@PathVariable(name = "id") Long id, Model model) {
+        Optional<Task> task = taskService.findById(id);
+        if (task.isPresent()) {
+            model.addAttribute("task", task.get());
+        }
+        return "task_info";
     }
 
     @GetMapping("/getTitle")
@@ -35,8 +51,7 @@ public class TaskController {
     }
 
     @GetMapping("/updateTime")
-    public Optional<TaskDto> updatedTime (@RequestParam String title
-                                          ){
+    public Optional<TaskDto> updatedTime (@RequestParam String title){
         return Optional.of(new TaskDto(taskService.updatedTime(title, LocalDateTime.now())));
     }
 
@@ -60,7 +75,5 @@ public class TaskController {
         taskService.delete(title);
         return true;
     }
-
-
 
 }

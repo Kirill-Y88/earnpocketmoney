@@ -1,18 +1,18 @@
-package ru.coolteam.earnpocketmoney.models;
+package ru.coolteam.earnpocketmoney.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
 @Table(name = "tasks")
 @NoArgsConstructor
+//@AllArgsConstructor
 public class Task{
 
     @Id
