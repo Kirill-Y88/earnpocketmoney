@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@PreAuthorize("hasRole('ROLE_PARENT')")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/parents")
