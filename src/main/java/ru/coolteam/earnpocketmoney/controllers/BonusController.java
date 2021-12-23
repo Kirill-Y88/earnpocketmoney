@@ -18,11 +18,12 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/bonuses")
+@RequestMapping("/api/v2/bonuses")
 public class BonusController {
     private final BonusService bonusService;
     private final ParentService parentService;
     private final ChildService childService;
+
 
     @GetMapping("all/children")
     public List<BonusDto> getAllChildren() {

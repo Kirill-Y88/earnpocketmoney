@@ -28,9 +28,10 @@ public class TaskService {
         return taskRepository.findAllByChild(child);
     }
 
-    public Task createTask(String title, Parent parent, Child child, Integer cost) {
+    public Task createTask(String title, String taskText, Parent parent, Child child, Integer cost) {
         Task task = new Task();
         task.setTitle(title);
+        task.setTaskText(taskText);
         task.setParent(parent);
         task.setChild(child);
         task.setCost(cost);

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -14,6 +15,7 @@
         <h1>Информация о задаче</h1>
         <div th:if="${task != null}">
             <h5 th:text="${'Название задачи: ' + task.title}"/>
+            <h5 th:text="${'Текст задачи: ' + task.taskText}"/>
             <h5 th:text="${'Стоимость задачи: ' + task.cost}"/>
         </div>
         <div th:if="${task == null}">

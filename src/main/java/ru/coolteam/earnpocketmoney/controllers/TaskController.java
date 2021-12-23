@@ -25,6 +25,7 @@ public class TaskController {
     private final ParentService parentService;
     private final ChildService childService;
 
+    //
     @GetMapping("/all")
     public String getAllTasks(Model model) {
         List<TaskDto> tasks = taskService.findAll()
@@ -36,6 +37,7 @@ public class TaskController {
         return "tasks";
     }
 
+    //
     @GetMapping("/{id}")
     public String showTaskInfo (@PathVariable(name = "id") Long id, Model model) {
         Optional<Task> task = taskService.findById(id);
@@ -45,31 +47,35 @@ public class TaskController {
         return "task_info";
     }
 
+    //Поиск по Заголовку Задачи
     @GetMapping("/getTitle")
     public Optional<TaskDto> getTaskDtoByTitle(@RequestParam String title){
         return taskService.findByTitle(title).map(TaskDto::new);
     }
 
+    //
     @GetMapping("/updateTime")
     public Optional<TaskDto> updatedTime (@RequestParam String title){
         return Optional.of(new TaskDto(taskService.updatedTime(title, LocalDateTime.now())));
     }
 
-
-    @GetMapping("/create")      //todo не забудь добавить description в модели и далее по коду, или удали этот столбец из таблицы в БД
+    //todo не забудь добавить description в модели и далее по коду, или удали этот столбец из таблицы в БД
+    @GetMapping("/create")
     public Optional<TaskDto> create(@RequestParam(name = "title") String title,
-                                           @RequestParam(name = "idParent") Integer idParent,
-                                           @RequestParam(name = "idChild") Integer idChild,
-                                           @RequestParam(name = "cost") Integer cost) {
+                                    @RequestParam(name = "taskText") String taskText,
+                                    @RequestParam(name = "idParent") Integer idParent,
+                                    @RequestParam(name = "idChild") Integer idChild,
+                                    @RequestParam(name = "cost") Integer cost) {
         Parent parent = parentService.findById(idParent).get();
         Child child;
         if(idChild == null || idChild == 0)
             {child = null;
             }else{child  = childService.findById(idChild).get();}
 
-        return Optional.of(new TaskDto(taskService.createTask(title, parent, child, cost)));
+        return Optional.of(new TaskDto(taskService.createTask(title, taskText, parent, child, cost)));
     }
 
+    //
     @DeleteMapping("/delete")
     public boolean delete (@RequestParam String title){
         taskService.delete(title);

@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "tasks")
 @NoArgsConstructor
-//@AllArgsConstructor
 public class Task{
 
     @Id
@@ -22,6 +21,9 @@ public class Task{
 
     @Column(name = "title")
     private String title;
+
+    @Column(name = "task_text")
+    private String taskText;
 
     @Column(name = "created_at")
     @CreationTimestamp

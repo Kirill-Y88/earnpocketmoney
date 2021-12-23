@@ -1,0 +1,440 @@
+.home {
+    min-height: 872px;
+    background-color:bisque;
+    padding: 36px 0;
+}
+
+.home-content-row {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+/* .home-content-row > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+.task-making {
+    width: 800px;
+    /* max-width: 800px; */
+    height: 800px;
+    left: 253px;
+    top: 36px;
+
+background: #F3F5F6;
+/* Gray 3 */
+
+border: 1px solid #828282;
+box-sizing: border-box;
+border-radius: 10px;
+
+}
+
+.h1-header {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    font-weight: 700;
+    font-size: 36px;
+    font-family: 'Georgia', serif;
+    color: #01996D;
+}
+
+.h1-header + * {
+    margin-top: 48px;
+}
+
+.create_task-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create_task-input + div {
+    margin-top: 30px;
+}
+
+.create_task-input input {
+    width: 600px;
+    height: 51px;
+    padding: 18px;
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+input::placeholder{
+    font-size: small;
+}
+
+input:focus::placeholder {
+    opacity: 0;
+}
+
+
+/* Элемент стоимости задачи */
+.task-cost-header > * {
+    margin-left: 100px;
+    max-width: 300px;
+}
+
+
+/* Заголовок стоимость задачи */
+.task-cost-button-header{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    max-width: 215px;
+    margin-bottom: 8px;
+}
+
+.task-cost-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.task-cost-buttons > * + *  {
+    margin-left: 10px;
+}
+
+.btn-cost, a.btn-cost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+
+    background-color: #ffffff;
+
+    font-size: 24px;
+    font-weight: 400;
+    width: 71px;
+    height: 71px;
+    margin: 0 20;
+
+    border: 5px solid #E0E0E0;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-bottom: 38px;
+}
+
+
+/* Добавление фото */
+.task-photo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 38px;
+}
+
+.task-photo > h1 {
+    margin-left: 10px;
+}
+
+
+/* Добавление ребенка */
+.add-child {
+    display: flex;
+    align-items: center;
+    margin-bottom: 38px;
+}
+
+.add-child > h1 {
+    margin-left: 10px;
+}
+
+
+
+/* Доска со списком задач */
+.task-list-board{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 550px;
+    height: 800px;
+    left: 1255px;
+    top: 32px;
+    background: #F3F5F6;
+    
+    /* Gray 3 */
+    border: 1px solid #828282;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/*  Список карточек задач */
+.task-card-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: 620px;   
+}
+
+/* Карточка задачи */
+.task-card {
+    /* display: flex;
+    align-items: center; */
+    width: 492px;
+    height: 80px;
+    display: flex;
+    /* align-items: center;  */
+
+    /* bgc */
+    background: #F9F9F9;
+    
+    /* Gray 4 */
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 10px 0px;
+}
+
+.task-card-wrapper {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center;  */
+    /* justify-content: space-between; */
+ 
+    /* left: calc(50% - 29px/2 + 0.5px);
+    top: calc(50% - 0px/2); */
+   
+}
+.task-card-wrapper > div + div {
+    /* right: 11px;
+    top: 11px; */
+     
+}
+
+/* Блок заголовок и текст карточки */
+.task-card-header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    max-width: 70%;
+    margin-left: 11px;
+    margin-top: 9px;
+}
+
+/* Заголовок карточки */
+.task-header {
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    
+    /* цвет текста заголовка */
+    color: #292929;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 4px 0px;
+}
+
+/* Текст карточки */
+.task-text {
+    top: 26px;
+
+    /* text / 13-r */
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 140%;
+    
+    /* or 18px */
+    /* цвет текста Gray 3 */
+    color: #828282;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 4px 0px;
+}
+
+/*  Блок оценка карточки */
+.task-cost {
+    background: #01996D;
+    border-radius: 5px;
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    margin-top: auto;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+/*  Оценка карточки */
+.cost {
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 0%;
+
+    /* identical to box height, or 0px */
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+
+    /* bgc */
+    color: #ffffff;
+}
+
+/* Показать еще задачи */
+.show-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Доска со списком задач */
+   /* .task-list-board{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 550px;
+        height: 800px;
+        left: 1255px;
+        top: 32px;
+        background: #F3F5F6;
+    */
+        /* Gray 3 *//*
+        border: 1px solid #828282;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+*/
+    /*  Список карточек задач */
+/*    .task-card-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-height: 620px;
+*/
+        /* background-color:rgb(150, 174, 184); */
+
+        /*Отступ карточки задачи */
+        /* margin-left: 10px; */ 
+/*     
+    }
+*/
+    /* .task-card-wraper > div {
+        display: flex;
+        justify-content:center;
+        align-items: center;
+    } */
+
+    /* Блок заголовок и текст карточки */
+/*    .task-card-header-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+*/
+    /* Заголовок карточки */
+/*    .task-header {
+        font-weight: 700;
+        font-size: 24px;
+        font-family: 'EcoCoding', serif;
+    }
+*/
+
+    /* Текст карточки */
+/*    .task-text {
+        font-weight: 500;
+        font-size: 16px;
+        font-family: 'EcoCoding', serif;
+    }
+*/
+    /* Карточка задачи */
+/*    .task-card {
+        display: flex;
+        align-items: center;
+*/
+        /* justify-content: space-around; */
+/*        width: 450px;
+        height: 80px; 
+*/
+        /* left: 0px;*/
+        /* top: 0px; */
+
+        /* Gray 4 */
+/*        border: 1px solid #BDBDBD;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 5px; 
+*/
+        /* Inside Auto Layout */
+/*        order: 0;
+        flex-grow: 0;
+        margin: 10px 0px;
+        margin-left: 5px;
+        margin-right: 5px;
+        background: #F9F9F9;
+    }
+*/
+
+/*    .task-card > * + * {
+        margin-left: 30px;
+        margin-right: 30px;
+        justify-content: flex-end;
+    }
+*/
+
+    /*  Блок оценка карточки */
+/*    .task-cost {
+        display: flex;
+        justify-content: center;
+        background-color: #828282;
+        width: 58px;
+        height: 58px;
+        left: 369px;
+        top: 11px;
+        border-radius: 5px;
+        background: #69DB4D;
+    }
+*/    
+    
+    /*  Оценка карточки */
+/*    .cost {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 400;
+        font-size: 28px;
+        font-family: 'EcoCoding', serif;
+    }
+*/  

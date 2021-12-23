@@ -22,11 +22,13 @@ public class BonusDto {
         this.id = bonus.getId();
         this.title = bonus.getTitle();
         this.parentDto = new ParentDto(bonus.getParent());
+
         if(bonus.getChild()!=null) {
             this.childDto = new ChildDto(bonus.getChild());
         }else {
             this.childDto = new ChildDto();
         }
+
         this.price = bonus.getPrice();
         this.receivedAt = bonus.getReceivedAt();
     }

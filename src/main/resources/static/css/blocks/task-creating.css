@@ -1,5 +1,6 @@
 .home {
     min-height: 872px;
+    overflow: hidden;
     background-color:bisque;
     padding: 36px 0;
 }
@@ -9,12 +10,6 @@
     align-items: center;
     justify-content:space-between;
 }
-
-/* .home-content-row > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
 
 .task-making {
     width: 800px;
@@ -145,121 +140,4 @@ input:focus::placeholder {
 
 .add-child > h1 {
     margin-left: 10px;
-}
-
-
-/* Доска со списком задач */
-.task-board{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 550px;
-    height: 800px;
-    left: 1255px;
-    top: 32px;
-    background: #F3F5F6;
-    
-    /* Gray 3 */
-    border: 1px solid #828282;
-    box-sizing: border-box;
-    border-radius: 10px;
-}
-
-
-/*  Список карточек задач */
-.task-card-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    max-height: 620px;
-    /* background-color:rgb(150, 174, 184); */
-
-    /*Отступ карточки задачи */
-    /* margin-left: 10px; */      
-}
-
-.task-card-wraper > div {
-    display: flex;
-    justify-content:center;
-    align-items: center;
-}
-
-
-/* Карточка задачи */
-.task-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 450px;
-    height: 80px; 
-    left: 0px;
-    top: 0px;
-   
-    /* Gray 4 */
-    border: 1px solid #BDBDBD;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 5px; 
-
-    /* Inside Auto Layout */
-    order: 0;
-    flex-grow: 0;
-    margin: 10px 0px;
-    margin-left: 5px;
-    margin-right: 5px;
-    background: #F9F9F9;
-}
-
-
-/* Блок заголовок и текст карточки */
-.task-card-header-text {
-    display: flex;
-    flex-direction: column;
-}
-
-
-/* Заголовок карточки */
-.task-card-header {
-    font-weight: 700;
-    font-size: 24px;
-    font-family: 'EcoCoding', serif;
-}
-
-
-/* Текст карточки */
-.task-card-text {
-}
-
-
-/*  Блок оценка карточки */
-.task-cost {
-    display: flex;
-    justify-content: center;
-    background-color: #828282;
-    width: 58px;
-    height: 58px;
-    left: 369px;
-    top: 11px;
-    border-radius: 5px;
-    background: #69DB4D;
-}
-
-
-/*  Оценка карточки */
-.cost {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 400;
-    font-size: 28px;
-    font-family: 'EcoCoding', serif;
-}
-
-
-/* Оценка карточки */
-.show-more {
-    display: flex;
-    justify-content: center;
-    margin-top: 24px;
 }
