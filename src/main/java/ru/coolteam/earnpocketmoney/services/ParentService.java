@@ -2,7 +2,7 @@ package ru.coolteam.earnpocketmoney.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.coolteam.earnpocketmoney.models.Parent;
+import ru.coolteam.earnpocketmoney.model.Parent;
 import ru.coolteam.earnpocketmoney.repositories.ParentRepository;
 
 import java.util.List;

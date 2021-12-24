@@ -1,4 +1,4 @@
-package ru.coolteam.earnpocketmoney.models;
+package ru.coolteam.earnpocketmoney.model;
 
 import lombok.*;
 

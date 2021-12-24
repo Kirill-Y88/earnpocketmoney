@@ -1,36 +1,40 @@
 package ru.coolteam.earnpocketmoney.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.coolteam.earnpocketmoney.dtos.ParentDto;
-import ru.coolteam.earnpocketmoney.models.Parent;
+import ru.coolteam.earnpocketmoney.model.Parent;
 import ru.coolteam.earnpocketmoney.services.ParentService;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/parents")
+@RequestMapping("/api/v2/parents")
 public class ParentController {
     private final ParentService parentService;
 
+    // TODO оставить без пути т.к. в верху все есть
+    // Получить список Родителей
     @GetMapping()
-    public List<ParentDto> getAllParents() {
-        return parentService.findAll().stream().map(ParentDto::new).collect(Collectors.toList());
-    }
-
-    @GetMapping("/dto")
     public List<ParentDto> getAllParentsDto() {
-        return parentService.findAll().stream().map(ParentDto::new).collect(Collectors.toList());
+        return parentService.findAll()
+                .stream()
+                .map(ParentDto::new)
+                .collect(Collectors.toList());
     }
 
+    // TODO возможно ли сделать POST???
+    // Найти родителя по логину
     @GetMapping("/getLogin")
     public Optional<ParentDto> getParentDtoByLogin(@RequestParam String login){
         return parentService.findByLogin(login).map(ParentDto::new);
     }
 
+    // Создать Родителя
     @GetMapping("/create")
     public Optional<ParentDto> create (@RequestParam String login,
                                       @RequestParam String password){
@@ -38,19 +42,21 @@ public class ParentController {
         return Optional.of(new ParentDto(parent));
     }
 
-    @DeleteMapping("/delete")  //todo нужен ли,если да, то что делать с создаными этим родителем задачами и бонусами
+    // TODO нужен ли?
+    //  если да, то что делать с созданными этим родителем задачами и бонусами???
+    // Удалить родителя
+    @DeleteMapping("/delete")
     public boolean delete (@RequestParam String login,
                            @RequestParam String password){
         parentService.delete(login,password);
         return true;
     }
 
+    // Изменить пароль
     @GetMapping("/updatePassword")
     public Optional<ParentDto> updatePassword (@RequestParam String login,
                                               @RequestParam String lastPass,
                                               @RequestParam String futurePass){
         return Optional.of(new ParentDto(parentService.updatePasswordParent(login, lastPass, futurePass)));
     }
-
-
 }

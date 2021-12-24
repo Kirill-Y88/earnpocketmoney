@@ -2,7 +2,7 @@ package ru.coolteam.earnpocketmoney.dtos;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.coolteam.earnpocketmoney.models.Child;
+import ru.coolteam.earnpocketmoney.model.Child;
 
 @Data
 @NoArgsConstructor
@@ -16,4 +16,5 @@ public class ChildDto {
         this.password = child.getPassword();
         this.wallet = child.getWallet();
     }
+
 }

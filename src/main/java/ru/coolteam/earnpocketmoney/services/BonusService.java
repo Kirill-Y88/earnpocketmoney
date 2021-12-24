@@ -3,9 +3,9 @@ package ru.coolteam.earnpocketmoney.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.coolteam.earnpocketmoney.models.Bonus;
-import ru.coolteam.earnpocketmoney.models.Child;
-import ru.coolteam.earnpocketmoney.models.Parent;
+import ru.coolteam.earnpocketmoney.model.Bonus;
+import ru.coolteam.earnpocketmoney.model.Child;
+import ru.coolteam.earnpocketmoney.model.Parent;
 import ru.coolteam.earnpocketmoney.repositories.BonusRepository;
 
 import java.time.LocalDateTime;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class BonusService {
     private final BonusRepository bonusRepository;
 
-    public Optional<Bonus> findById(Integer id) {
+    public Optional<Bonus> findById(Long id) {
         return bonusRepository.findById(id);
     }
 

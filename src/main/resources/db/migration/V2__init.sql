@@ -17,6 +17,7 @@ drop table  if exists bonuses;
 create table bonuses (
                           id              bigserial primary key,
                           title           varchar(80) not null,
+                          task_text       varchar(255),
                           id_parent       integer not null REFERENCES parents(id),
                           id_child        integer REFERENCES children(id),
                           price             integer not null,
@@ -27,6 +28,7 @@ drop table  if exists tasks;
 create table tasks (
                        id              bigserial primary key,
                        title           varchar(30) not null,
+                       task_text       varchar(255),
                        description     varchar(80),
                        created_at      timestamp default current_timestamp,
                        updated_at      timestamp,
@@ -47,15 +49,14 @@ values
     ('child2', '222', 20),
     ('child3', '333', 55);
 
-insert into tasks (title, id_parent, id_child, cost)
+insert into tasks (id, title, task_text, id_parent, id_child, cost)
 values
-    ('Тестовая задача 1',1,1,2),
-    ('Brush teeth',1,2,15),
-    ('trow iut the trash',2,3,21);
+    (1L, 'Тестовая задача 1', 'gsdffdsfdf', 1,1,2),
+    (2L, 'Brush teeth', 'gsdfdfdff',1,2,15),
+    (3L, 'Throw out the trash', 'gssf dsfdf', 2,3,21);
 
-
-insert into bonuses (title, id_parent, price)
+insert into bonuses (title, task_text, id_parent, price)
 values
-    ('bicycle', 1, 15),
-    ('gun', 2, 99);
+    ('bicycle', 'dsdsadsad', 1, 15),
+    ('gun','fddgfdgfdgddsf', 2, 99);
 commit;

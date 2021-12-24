@@ -1,18 +1,16 @@
 package ru.coolteam.earnpocketmoney.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import ru.coolteam.earnpocketmoney.models.Bonus;
-import ru.coolteam.earnpocketmoney.models.Child;
+import ru.coolteam.earnpocketmoney.model.Bonus;
+import ru.coolteam.earnpocketmoney.model.Child;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BonusRepository extends JpaRepository<Bonus,Integer> {
+public interface BonusRepository extends JpaRepository<Bonus, Long> {
 
     Optional <Bonus> findFirstBonusByTitle (String title);
     Bonus findFirstByTitle (String title);

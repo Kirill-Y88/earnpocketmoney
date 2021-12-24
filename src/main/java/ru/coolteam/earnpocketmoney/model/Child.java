@@ -1,10 +1,11 @@
-package ru.coolteam.earnpocketmoney.models;
+package ru.coolteam.earnpocketmoney.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "children")
