@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 public class ParentController {
     private final ParentService parentService;
 
-    //TODO оставить без пути т.к. в верху все есть
-    //Получить список родителей
+    // TODO оставить без пути т.к. в верху все есть
+    // Получить список Родителей
     @GetMapping()
     public List<ParentDto> getAllParentsDto() {
         return parentService.findAll()
@@ -27,14 +27,14 @@ public class ParentController {
                 .collect(Collectors.toList());
     }
 
-    //TODO возможно ли сделать POST
-    //достать родителя по логину
+    // TODO возможно ли сделать POST???
+    // Найти родителя по логину
     @GetMapping("/getLogin")
     public Optional<ParentDto> getParentDtoByLogin(@RequestParam String login){
         return parentService.findByLogin(login).map(ParentDto::new);
     }
 
-    //создать родителя
+    // Создать Родителя
     @GetMapping("/create")
     public Optional<ParentDto> create (@RequestParam String login,
                                       @RequestParam String password){
@@ -42,8 +42,9 @@ public class ParentController {
         return Optional.of(new ParentDto(parent));
     }
 
-    //TODO нужен ли,если да, то что делать с созданными этим родителем задачами и бонусами
-    //удалить родителя
+    // TODO нужен ли?
+    //  если да, то что делать с созданными этим родителем задачами и бонусами???
+    // Удалить родителя
     @DeleteMapping("/delete")
     public boolean delete (@RequestParam String login,
                            @RequestParam String password){
@@ -51,7 +52,7 @@ public class ParentController {
         return true;
     }
 
-    //изменение пароля
+    // Изменить пароль
     @GetMapping("/updatePassword")
     public Optional<ParentDto> updatePassword (@RequestParam String login,
                                               @RequestParam String lastPass,

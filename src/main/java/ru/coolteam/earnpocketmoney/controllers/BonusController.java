@@ -24,22 +24,25 @@ public class BonusController {
     private final ParentService parentService;
     private final ChildService childService;
 
-
-    @GetMapping("all/children")
+    // Вывести весь список Детей со всеми Бонусами ??? я правильно понял??
+    @GetMapping("/all/children")
     public List<BonusDto> getAllChildren() {
         return  bonusService.findAll().stream().map(BonusDto::new).collect(Collectors.toList());
     }
 
+    // Найти Бонус по ID
     @GetMapping("/getId")
     public Optional<BonusDto> getBonusDtoById(@RequestParam Long id){
         return bonusService.findById(id).map(BonusDto::new);
     }
 
+    // Найти Бонус по Заголовку
     @GetMapping("/getTitle")
     public Optional<BonusDto> getBonusDtoByTitle(@RequestParam String title){
         return bonusService.findByName(title).map(BonusDto::new);
     }
 
+    // Создать Бонус
     @GetMapping("/create")
     public Optional<BonusDto> create (@RequestParam String title,
                                       @RequestParam Integer idParent,  //TODO надо обдумать с какого места отправить родителя в запрос
@@ -49,12 +52,14 @@ public class BonusController {
         return Optional.of(new BonusDto(bonus));
     }
 
+    // Удалить Бонус
     @DeleteMapping("/delete")
     public boolean delete (@RequestParam String title){
         bonusService.delete(title);
         return true;
     }
 
+    // Обновление Бонуса Родителем
     @GetMapping("/updateFromParent")
     public Optional<BonusDto> updateBonusFromParent (@RequestParam String title,
                                            @RequestParam Integer idParent,  //TODO надо обдумать с какого места отправить родителя в запрос
@@ -63,6 +68,7 @@ public class BonusController {
         return Optional.of(new BonusDto(bonusService.updateBonusFromParent(title,parent,price)));
     }
 
+    //Обновление Бонуса Ребенком
     @GetMapping("/updateFromChild")
     public Optional<BonusDto> updateBonusFromChild (@RequestParam String title,
                                                      @RequestParam Integer idChild  //TODO надо обдумать с какого места отправить родителя в запрос
@@ -70,7 +76,4 @@ public class BonusController {
         Child child = childService.findById(idChild).get();
         return Optional.of(new BonusDto(bonusService.updateBonusFromChildren(title,child,LocalDateTime.now())));
     }
-
-
-
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earn Pocket Money</title>
 
-    <link th:href="@{/css/blocks/task-list.css}" rel="stylesheet" />
+    <link th:href="@{/css/blocks/tasklist.css}" rel="stylesheet" />
     <link th:href="@{/css/blocks/header.css}" rel="stylesheet" />
     <link th:href="@{/css/blocks/task-creating.css}" rel="stylesheet" />
 
@@ -51,7 +51,7 @@
                     </div>
 
                     <!-- Обертка доски -->
-                    <div class="board__wrapper">
+                    <div class="tasklist">
 
                         <!-- Доска списка задач -->
                         <div class="board__tasklist__content">
@@ -59,10 +59,10 @@
                             <!-- Заголовок доски задач -->
                             <h1 class="h1-header">Список задач :</h1>
 
-                            <div class="board__tasklist">
+                            <div class="element__container">
 
                                 <!-- Список карточек задач -->
-                                <div class="element__container" th:each="t : ${tasks}">
+                                <div class="board__tasklist" th:each="t : ${tasks}">
 
                                     <!-- Карточка задачи -->
                                     <div class="taskcard">
@@ -110,5 +110,6 @@
         </div>
     </footer>
 </body>
+
 
 </html>

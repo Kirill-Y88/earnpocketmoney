@@ -65,17 +65,15 @@
     align-items: center;
 }
 
-
 .header-login > * + * {
     margin-left: 35px;
 }
 
 /*настройка цвета и плавности перехода цвета ссылок (a) в логине (Login)*/
 .header-login a {
-    color: #000;
+    color: #292929;
     transition: color 0.2s ease;
 }
-
 
 /*настройка цвета при наведении на ссылку (a) в логине (Login)*/
 .header-login a:hover {

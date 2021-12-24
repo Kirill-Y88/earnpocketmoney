@@ -23,7 +23,7 @@ public class ChildController {
     private final TaskService taskService;
     private final BonusService bonusService;
 
-    // Получить список детей
+    // Получить список Детей
     @GetMapping()
     public List<ChildDto> getAllChildren() {
         return childService.findAll().stream().map(ChildDto::new).collect(Collectors.toList());
@@ -35,7 +35,7 @@ public class ChildController {
         return childService.findByLogin(login).map(ChildDto::new);
     }
 
-    // Создание ребенка
+    // Создание Ребенка
     @GetMapping("/create")
     public Optional<ChildDto> create (@RequestParam String login,
                                       @RequestParam String password
@@ -66,15 +66,15 @@ public class ChildController {
         return true;
     }
 
-    //обновление кошелька
-    //Кидаем новый остаток
+    // Обновление кошелька
+    // Кидаем новый остаток
     @GetMapping("/updateWallet")
     public Optional<ChildDto> updateWallet (@RequestParam String login,
                                             @RequestParam Integer wallet){
         return Optional.of(new ChildDto(childService.updateWalletChild(login, wallet)));
     }
 
-    //Изменить пароль
+    // Изменить пароль
     @GetMapping("/updatePassword")
     public Optional<ChildDto> updatePassword (@RequestParam String login,
                                               @RequestParam String lastPass,

@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> CoolTeam HTML project for earn pocket money</title>
 
+    <!--Blocks-->
+    <link rel="stylesheet" href="css/blocks/task-creating.css">
+    <link rel="stylesheet" href="css/blocks/tasklist.css">
+    <link rel="stylesheet" href="css/blocks/header.css">
+
     <!--Reset-->
     <link rel="stylesheet" href="css/blocks/base.css">
     <link rel="stylesheet" href="css/blocks/reset.css">
-
-    <!--Blocks-->
-    <link rel="stylesheet" href="css/blocks/header.css">
-    <link rel="stylesheet" href="css/blocks/task-list.css">
-    <link rel="stylesheet" href="css/blocks/task-creating.css">
 
     <!--Fonts-->
     <link rel="stylesheet" href="css/fonts/Lato/stylesheet.css">
     <link rel="stylesheet" href="css/fonts/EcoCoding/stylesheet.css">
     <link rel="stylesheet" href="css/fonts/Georgia/stylesheet.css">
+
 </head>
 
 <body>
@@ -115,7 +116,7 @@
                     </div>
 
                    <!-- Обертка доски -->
-                   <div class="board__wrapper">
+                   <div class="tasklist">
 
                        <!-- Доска списка задач -->
                        <div class="board__tasklist__content">
@@ -123,10 +124,10 @@
                            <!-- Заголовок доски задач -->
                            <h1 class="h1-header">Список задач :</h1>
 
-                           <div class="board__tasklist">
+                           <div class="element__container">
 
                                <!-- Список карточек задач -->
-                               <div class="element__container" th:each="t : ${tasks}">
+                               <div class="board__tasklist" th:each="t : ${tasks}">
 
                                    <!-- Карточка задачи -->
                                    <div class="taskcard">

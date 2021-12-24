@@ -25,19 +25,19 @@ public class TaskController {
     private final ParentService parentService;
     private final ChildService childService;
 
-    //
+    // Вывести весь список задач
     @GetMapping("/all")
     public String getAllTasks(Model model) {
-        List<TaskDto> tasks = taskService.findAll()
+        List<TaskDto> tasklist = taskService.findAll()
                 .stream().
                 map(TaskDto::new)
                 .collect(Collectors.toList());
 
-        model.addAttribute("tasks", tasks);
-        return "tasks";
+        model.addAttribute("tasks", tasklist);
+        return "tasklist";
     }
 
-    //
+    // Найти задачу по ID
     @GetMapping("/{id}")
     public String showTaskInfo (@PathVariable(name = "id") Long id, Model model) {
         Optional<Task> task = taskService.findById(id);
@@ -53,13 +53,13 @@ public class TaskController {
         return taskService.findByTitle(title).map(TaskDto::new);
     }
 
-    //
+    // Обновление времени создания Задачи
     @GetMapping("/updateTime")
     public Optional<TaskDto> updatedTime (@RequestParam String title){
         return Optional.of(new TaskDto(taskService.updatedTime(title, LocalDateTime.now())));
     }
 
-    //todo не забудь добавить description в модели и далее по коду, или удали этот столбец из таблицы в БД
+    // TODO не забудь добавить description в модели и далее по коду, или удали этот столбец из таблицы в БД
     @GetMapping("/create")
     public Optional<TaskDto> create(@RequestParam(name = "title") String title,
                                     @RequestParam(name = "taskText") String taskText,
@@ -75,7 +75,8 @@ public class TaskController {
         return Optional.of(new TaskDto(taskService.createTask(title, taskText, parent, child, cost)));
     }
 
-    //
+    // Удаление задачи (из базы)
+    //TODO подумать над функционалом пометки - задача удалена.
     @DeleteMapping("/delete")
     public boolean delete (@RequestParam String title){
         taskService.delete(title);

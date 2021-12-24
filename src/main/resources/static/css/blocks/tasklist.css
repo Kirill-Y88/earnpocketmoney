@@ -1,27 +1,4 @@
-.btn, a.btn {
-    display: inline-block;
-    min-height: 51px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 1;
-
-    padding-left: 50px;
-    padding-right: 50px;
-    background-color: #01996D;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 400;
-    border-radius: 4px;
-    transition: opacity 0.2s ease;
-}
-
-.btn:hover, a.btn:hover {
-    opacity: 0.8;
-    color: #fff;
-}
-
-.board__wrapper {
+.tasklist {
     overflow: hidden;
     width: 40%;
     height: 800px;
@@ -39,7 +16,7 @@
 .board__tasklist__content {
     flex: 1 1 auto;
 }
-.board__tasklist > * {
+.element__container > * {
     padding: 0px 0px 18px 0px;
 }
 
@@ -47,7 +24,7 @@
     margin-top: 48px;
 }
 
-.element__container {
+.board__tasklist {
     display: flex;
     max-width: 100%;
     margin: 0px auto;
