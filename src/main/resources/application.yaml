@@ -3,12 +3,26 @@ server:
   servlet:
     context-path: /app
 spring:
+#  main:
+#    allow-circular-references: true
   datasource:
     driver-class-name: org.h2.Driver
+<<<<<<< HEAD
     url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL;
 
+||||||| merged common ancestors
+    # url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL
+=======
+    url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL
+>>>>>>> 81264a5e1bac1e5f7a5c0ad7026954e91249419b
     # сохранил в файлик, т.к. если база в оперативной памяти, то ни идея, ни консольное приложение не определяет ее содержимое
+<<<<<<< HEAD
     #url: jdbc:h2:file:C:/Main/Education/GB/thief1;MODE=PostgreSQL;AUTO_SERVER=TRUE;
+||||||| merged common ancestors
+    url: jdbc:h2:file:C:/Main/Education/GB/thief1;MODE=PostgreSQL;AUTO_SERVER=TRUE;
+=======
+    # url: jdbc:h2:file:C:/Main/Education/GB/thief5;MODE=PostgreSQL;AUTO_SERVER=TRUE;
+>>>>>>> 81264a5e1bac1e5f7a5c0ad7026954e91249419b
     username: sa
     password:
   jpa:
@@ -27,8 +41,17 @@ spring:
       host: localhost
       password:
       port: 6379
+  jwt:
+    secret: javamaster
   thymeleaf:
     check-template-location: true
     prefix: classpath:/static/
+<<<<<<< HEAD
 #    prefix: classpath:/templates/          # если нужно что-то размещать в темплейтах
 
+||||||| merged common ancestors
+
+=======
+    suffix: .html
+    cache: false
+>>>>>>> 81264a5e1bac1e5f7a5c0ad7026954e91249419b

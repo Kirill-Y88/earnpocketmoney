@@ -18,8 +18,26 @@
     <!--Fonts-->
     <link rel="stylesheet" href="css/fonts/Lato/stylesheet.css">
     <link rel="stylesheet" href="css/fonts/EcoCoding/stylesheet.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="css/fonts/Georgia/stylesheet.css">
 
+||||||| merged common ancestors
+=======
+    <link rel="stylesheet" href="css/fonts/Georgia/stylesheet.css">
+
+    <link th:href="@{/css/blocks/tasklist.css}" rel="stylesheet" />
+    <link th:href="@{/css/blocks/header.css}" rel="stylesheet" />
+    <link th:href="@{/css/blocks/task-creating.css}" rel="stylesheet" />
+
+    <link th:href="@{/css/blocks/base.css}" rel="stylesheet" />
+    <link th:href="@{/css/blocks/reset.css}" rel="stylesheet" />
+
+    <!-- Fonts -->
+    <link th:href="@{/css/fonts/Georgia/stylesheet.css}" rel="stylesheet">
+    <link th:href="@{/css/fonts/Lato/stylesheet.css}" rel="stylesheet">
+    <link th:href="@{/css/fonts/EcoCoding/stylesheet.css}" rel="stylesheet">
+
+>>>>>>> 81264a5e1bac1e5f7a5c0ad7026954e91249419b
 </head>
 
 <body>
@@ -30,15 +48,21 @@
                 <div class="header-logo">CoolTeam<!--<img src=".img/logo.svg" alt="Logo">--></div>
                 <nav class="header-nav">
                     <ul class="">
-                        <li><a href="#">Главная</a></li>
+                        <li><a th:href="@{/}">Главная</a></li>
                         <li><a href="#">Семья</a></li>
+<<<<<<< HEAD
                         <li><a href="/app/api/v2/tasks/all">Задачи</a></li>
+||||||| merged common ancestors
+                        <li><a href="#">Задачи</a></li>
+=======
+                        <li><a href="/app/api/v1/tasks/all">Задачи</a></li>
+>>>>>>> 81264a5e1bac1e5f7a5c0ad7026954e91249419b
                         <li><a href="#">Статистика</a></li>
                     </ul>
                 </nav>
                 <div class="header-login">
-                    <a href="#">Sign in</a>
-                    <a href="#" class="btn">Поехали!</a>
+                    <a href="/app/register">Sign in</a>
+                    <a href="/app/login" class="btn">Поехали!</a>
                 </div>
             </div>
         </div>
@@ -94,18 +118,34 @@
 
                                 <!-- Фото задачи -->
                                 <div class="task-photo">
+<<<<<<< HEAD
                                     <a href="#" class = add-photo-icon>
                                         <img src="img/content/camera.svg" alt="task-photo">
                                     </a>
+||||||| merged common ancestors
+                                    <a href="#" class = add-photo-icon><img src="img/content/camera.svg" alt="task-photo"></a>
+=======
+                                    <a href="#" class = add-photo-icon>
+                                        <img src="content/img/camera.svg" alt="task-photo">
+                                    </a>
+>>>>>>> 81264a5e1bac1e5f7a5c0ad7026954e91249419b
                                     <h1 class="add-photo-header">Сделать фото задачи</h1>
                                 </div>
 
                                 <!-- Добавление ребенка -->
                                 <div class="add-child">
                                     <!-- <p><input type="file" name="add-child-photo" id=""></p> -->
+<<<<<<< HEAD
                                     <a href="#"class = add-child-icon>
                                         <img src="img/content/plus_circle_outline.svg" alt="add-child">
                                     </a>
+||||||| merged common ancestors
+                                    <a href="#"class = add-child-icon><img src="img/content/plus_circle_outline.svg" alt="add-child"></a>
+=======
+                                    <a href="#"class = add-child-icon>
+                                        <img src="content/img/plus_circle_outline.svg" alt="add-child">
+                                    </a>
+>>>>>>> 81264a5e1bac1e5f7a5c0ad7026954e91249419b
                                     <h1 class="add-child-header">Добавить ребенка</h1>
                                 </div>
 
@@ -115,6 +155,7 @@
                         </form>
                     </div>
 
+<<<<<<< HEAD
                    <!-- Обертка доски -->
                    <div class="tasklist">
 
@@ -164,6 +205,185 @@
                        </div>
                    </div>
                </div>
+||||||| merged common ancestors
+                    <div class="task-board">
+                        <!-- Заголовок доски задач -->
+                        <h1 class="h1-header">Список задач :</h1>
+
+                        <!-- Список карточек задач -->
+                        <div class="task-card-list">
+
+                            <!-- Карточка задачи -->
+                            <div class="task-card">
+
+                                <!-- Блок заголовок и текст карточки -->
+                                <div class="task-card-header-text">
+
+                                    <!-- Заголовок карточки -->
+                                    <h1 class="task-card-header">Задача №  1</h1>
+
+                                    <!-- Текст карточки -->
+                                    <p class="task-card-text">Помыть посуду</p>
+                                </div>
+
+                                <!-- Блок оценка карточки -->
+                                <div class="task-coast">
+                                    <!-- Оценка карточки -->
+                                    <span class="coast">5</span>
+                                </div>
+                            </div>
+
+                            <!-- Карточка задачи -->
+                            <div class="task-card">
+
+                                <!-- Блок заголовок и текст карточки -->
+                                <div class="task-card-header-text">
+
+                                    <!-- Заголовок карточки -->
+                                    <h1 class="task-card-header">Задача №  2</h1>
+
+                                    <!-- Текст карточки -->
+                                    <p class="task-card-text">Помыть посуду</p>
+                                </div>
+
+                                <!-- Блок оценка карточки -->
+                                <div class="task-coast">
+                                    <!-- Оценка карточки -->
+                                    <div class="coast">3</div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-card">
+
+                                <!-- Блок заголовок и текст карточки -->
+                                <div class="task-card-header-text">
+
+                                    <!-- Заголовок карточки -->
+                                    <h1 class="task-card-header">Задача №  3</h1>
+
+                                    <!-- Текст карточки -->
+                                    <p class="task-card-text">Помыть посуду</p>
+                                </div>
+
+                                <!-- Блок оценка карточки -->
+                                <div class="task-coast">
+                                    <!-- Оценка карточки -->
+                                    <div class="coast">15</div>
+                                </div>
+                            </div>
+                            <div class="task-card">
+
+                                <!-- Блок заголовок и текст карточки -->
+                                <div class="task-card-header-text">
+
+                                    <!-- Заголовок карточки -->
+                                    <h1 class="task-card-header">Задача №  4</h1>
+
+                                    <!-- Текст карточки -->
+                                    <p class="task-card-text">Помыть посуду</p>
+                                </div>
+
+                                <!-- Блок оценка карточки -->
+                                <div class="task-coast">
+                                    <!-- Оценка карточки -->
+                                    <div class="coast">7</div>
+                                </div>
+                            </div>
+                            <div class="task-card">
+
+                                <!-- Блок заголовок и текст карточки -->
+                                <div class="task-card-header-text">
+
+                                    <!-- Заголовок карточки -->
+                                    <h1 class="task-card-header">Задача №  5</h1>
+
+                                    <!-- Текст карточки -->
+                                    <p class="task-card-text">Помыть посуду</p>
+                                </div>
+
+                                <!-- Блок оценка карточки -->
+                                <div class="task-coast">
+                                    <!-- Оценка карточки -->
+                                    <div class="coast">10</div>
+                                </div>
+                            </div>
+                            <div class="task-card">
+
+                                <!-- Блок заголовок и текст карточки -->
+                                <div class="task-card-header-text">
+
+                                    <!-- Заголовок карточки -->
+                                    <h1 class="task-card-header">Задача №  6</h1>
+
+                                    <!-- Текст карточки -->
+                                    <p class="task-card-text">Помыть посуду</p>
+                                </div>
+
+                                <!-- Блок оценка карточки -->
+                                <div class="task-coast">
+                                    <!-- Оценка карточки -->
+                                    <div class="coast">5</div>
+                                </div>
+                            </div>
+                            
+                         <!-- Блок показать "ЕЩЕ" -->
+                         <div>
+                            <a href="#" class="show-more">Еще...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+=======
+                   <!-- Обертка доски -->
+                   <div class="tasklist">
+
+                       <!-- Доска списка задач -->
+                       <div class="board__tasklist__content">
+
+                           <!-- Заголовок доски задач -->
+                           <h1 class="h1-header">Список задач :</h1>
+
+                           <div class="element__container">
+
+                               <!-- Список карточек задач -->
+                               <div class="board__tasklist" th:each="t : ${tasks}">
+
+                                   <!-- Карточка задачи -->
+                                   <div class="taskcard">
+
+                                       <div class="taskcard__row">
+                                           <!-- Блок заголовок и текст карточки -->
+                                           <div class="taskcard__headerandtext" >
+
+                                               <!-- Заголовок карточки -->
+                                               <h1 class="task__header" th:text="${t.title}">Заголовок задачи</h1>
+
+                                               <!-- Текст карточки -->
+                                               <p class="task__text" th:text="${t.taskText}">Текст задачи</p>
+                                           </div>
+
+                                           <!-- Блок оценка карточки -->
+                                           <div class="task__cost">
+                                               <!-- Оценка карточки -->
+                                               <span class="cost" th:text="${t.wages}">5</span>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+                       <!-- Блок показать "ЕЩЕ" -->
+                       <div class=" showmore">
+                           <div class="showmore__row">
+                               <div class="showmore__text">
+                                   <a href="#" class="showmore__link">Еще...</a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+>>>>>>> 81264a5e1bac1e5f7a5c0ad7026954e91249419b
             </div>
         </section>
     </main>
