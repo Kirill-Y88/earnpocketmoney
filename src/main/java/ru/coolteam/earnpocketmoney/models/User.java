@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -17,20 +16,14 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "login")
+    @Column
     private String login;
 
-    @Column(name = "password")
+    @Column
     private String password;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "username")
-    private String username;
-
-    @Transient
-    private String passwordConfirm;
+    @Column
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "id_role")
@@ -43,4 +36,7 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "id_people_groups")
     private PeopleGroups peopleGroups;
+
+
+
 }
