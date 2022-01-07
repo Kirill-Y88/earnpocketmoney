@@ -28,6 +28,16 @@ public class UserService {
         return userRepository.findByLogin(login).orElseThrow();
     }
 
+    public User findByLoginAndPassword (String login, String password){
+        User user = findByLogin(login);
+        if (user != null) {
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     public Optional<User> findByEmail(String email){
         Optional<User> user = userRepository.findByEmail(email);
         return Optional.empty();

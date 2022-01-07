@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.coolteam.earnpocketmoney.models.User;
 
+import javax.security.auth.Subject;
+import java.security.Principal;
+
 @Data
 @NoArgsConstructor
 public class UserDto {
@@ -26,4 +29,6 @@ public class UserDto {
         this.walletDto = new WalletDto(user.getWallet());
         this.peopleGroupsDto = new PeopleGroupsDto(user.getPeopleGroups());
     }
+
+
 }

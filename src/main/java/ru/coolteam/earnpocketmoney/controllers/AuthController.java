@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.coolteam.earnpocketmoney.authorization.AuthRequest;
+import ru.coolteam.earnpocketmoney.authorization.AuthResponse;
 import ru.coolteam.earnpocketmoney.authorization.JwtResponse;
 import ru.coolteam.earnpocketmoney.authorization.jwt.JwtProvider;
 import ru.coolteam.earnpocketmoney.models.*;
@@ -22,6 +23,7 @@ public class AuthController {
     private final UserService userService;
     private final JwtProvider jwtProvider;
     private final RoleRepository roleRepository;
+    private final AuthC authC;
 
 //    @PostMapping("/register")
 //    public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
@@ -80,18 +82,43 @@ public class AuthController {
         return "login";
     }
 
-    @GetMapping()
+    /*@GetMapping()
     public ResponseEntity<?> authentication(@RequestBody AuthRequest request) {
         User user = userService.findByLogin(request.getLogin());
         String token = jwtProvider.generateToken(user.getLogin());
         return ResponseEntity.ok(new JwtResponse(token));
-    }
+    }*/
 
     @PostMapping("/auth")
     public String authentication(@ModelAttribute("userForm") User userForm) {
 
-        userForm.setRole(roleRepository.findByRole("ROLE_PARENT"));
-        userService.findByLogin("parent1");
-        return "redirect:/api/v1/tasks/all";
+       // userForm.setRole(roleRepository.findByRole("ROLE_PARENT"));
+      //  userService.findByLoginAndPassword(userForm.getLogin(),userForm.getPassword());
+      //  userService.findByLogin(userForm.getLogin());
+      //  User user = userService.findByLoginAndPassword(userForm.getLogin(), userForm.getPassword());
+       // String token = jwtProvider.generateToken(user.getLogin());
+        AuthRequest authRequest = new AuthRequest();
+        authRequest.setLogin(userForm.getLogin());
+        authRequest.setPassword(userForm.getPassword());
+     //   auth(authRequest);
+        authC.auth(authRequest);
+        return "redirect:/api/v1/cabinet";
     }
+
+   // @PostMapping("/auth2")
+    public AuthResponse auth(@RequestBody AuthRequest request) {
+        User user = userService.findByLoginAndPassword(request.getLogin(), request.getPassword());
+        String token = jwtProvider.generateToken(user.getLogin());
+        return new AuthResponse(token);
+    }
+
+
+   /* @PostMapping("/auth")
+    public AuthResponse auth(@ModelAttribute("userForm") User userForm) {
+        User user = userService.findByLoginAndPassword(userForm.getLogin(), userForm.getPassword());
+        String token = jwtProvider.generateToken(user.getLogin());
+        return new AuthResponse(token);
+    }*/
+
+
 }

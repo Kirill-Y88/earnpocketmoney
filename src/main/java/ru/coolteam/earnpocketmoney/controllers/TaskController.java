@@ -2,16 +2,24 @@ package ru.coolteam.earnpocketmoney.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.coolteam.earnpocketmoney.authorization.CustomUserDetails;
 import ru.coolteam.earnpocketmoney.dtos.TaskDto;
+import ru.coolteam.earnpocketmoney.dtos.UserDto;
 import ru.coolteam.earnpocketmoney.models.Task;
 import ru.coolteam.earnpocketmoney.models.User;
 import ru.coolteam.earnpocketmoney.services.TaskService;
 import ru.coolteam.earnpocketmoney.services.UserService;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,12 +61,27 @@ public class TaskController {
 
     // Вывести весь список задач
     @GetMapping("/cabinet")
-    public String getCabinet(Model model) {
+    @ResponseBody
+    public String getCabinet( Model model) {
         List<TaskDto> taskDtoList = taskService.findAll()
                 .stream()
                 .map(TaskDto::new)
                 .collect(Collectors.toList());
+        System.out.println("+++++");
 
+//////////////////////////
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        System.out.println(principal.getClass());
+        System.out.println(username);
+//////////////////
         model.addAttribute("tasks", taskDtoList);
         return "cabinet";
     }
@@ -106,14 +129,25 @@ public class TaskController {
         return taskDtoList;
     }
 
-    @GetMapping("/userCreatingTask")
+    /*@GetMapping("/userCreatingTask")
     public List<TaskDto> getTasksByUserCreatingTask (@RequestParam String login){
         List<TaskDto> taskDtoList = taskService.getAllTasksByUserCreatingTask(login)
                 .stream()
                 .map(TaskDto::new)
                 .collect(Collectors.toList());
         return taskDtoList;
-    }
+    }*/
+
+  /*  @GetMapping("/cabinet")
+    public String getTasksByUserCreatingTask (Principal principal, Model model){
+        List<TaskDto> taskDtoList = new ArrayList<>();
+         taskDtoList = taskService.getAllTasksByUserCreatingTask(principal.getName())
+                .stream()
+                .map(TaskDto::new)
+                .collect(Collectors.toList());
+        model.addAttribute("tasks", taskDtoList);
+        return "cabinet";
+    }*/
 
     @GetMapping("/userExecutingTask")
     public List<TaskDto> getTasksByUserExecutingTask (@RequestParam String login){
