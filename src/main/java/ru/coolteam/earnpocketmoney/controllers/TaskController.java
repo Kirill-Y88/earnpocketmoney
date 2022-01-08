@@ -21,21 +21,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-//@RestController
 @Controller
 @RequiredArgsConstructor
-//@RequestMapping("/api/v1/tasks")
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/tasks")
 public class TaskController {
     private final TaskService taskService;
     private final UserService userService;
 
-    //rest version
-    /*@GetMapping()
-    public List<TaskDto> getAllTasks() {
-        List<TaskDto> taskDtoList = taskService.findAll().stream().map(TaskDto::new).collect(Collectors.toList());
-        return taskDtoList;
-    }*/
+//    rest version
+//    @GetMapping()
+//    public List<TaskDto> getAllTasks() {
+//        List<TaskDto> taskDtoList = taskService.findAll().stream().map(TaskDto::new).collect(Collectors.toList());
+//        return taskDtoList;
+//    }
 
 //    @GetMapping()
 //    public String getAllTasks(Model model) {
@@ -44,31 +42,31 @@ public class TaskController {
 //        return "tasklist";
 //    }
 
-    // Вывести весь список задач
-    @GetMapping("/tasks/all")
-    public String getAllTasks(Model model) {
-        List<TaskDto> taskDtoList = taskService.findAll()
-                .stream()
-                .map(TaskDto::new)
-                .collect(Collectors.toList());
 
-        model.addAttribute("tasks", taskDtoList);
-         return "index";
+//     Вывести весь список задач
+//    @GetMapping("/tasks/all")
+//    public String getAllTasks(Model model) {
+//        List<TaskDto> taskDtoList = taskService.findAll()
+//                .stream()
+//                .map(TaskDto::new)
+//                .collect(Collectors.toList());
+//
+//        model.addAttribute("tasks", taskDtoList);
 //        return "tasks";
-    }
+//    }
 
     // Вывести весь список задач
-    @GetMapping("/tasks/cabinet")
-    public String getCabinet(Model model, String login) {
-        List<TaskDto> taskDtoList = taskService.findAll()
-                .stream()
-                .map(TaskDto::new)
-                .collect(Collectors.toList());
 
-        model.addAttribute("tasks", taskDtoList);
-        return "cabinet";
+    @GetMapping("/all")
+    public String getAllTasks() {
+//        List<TaskDto> taskDtoList = taskService.findAll()
+//                .stream()
+//                .map(TaskDto::new)
+//                .collect(Collectors.toList());
+//
+//        model.addAttribute("tasks", taskDtoList);
+        return "tasks";
     }
-
 //    @GetMapping("/{id}")
 //    public String showTaskInfo (@PathVariable(name = "id") Long id, Model model) {
 //        Optional<Task> task = taskService.findById(id);
