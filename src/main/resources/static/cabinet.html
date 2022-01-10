@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> EPM_cabinet</title>
+    <title> EPM_Cabinet</title>
     
-    <link th:href="@{/css/blocks/board_greeting.css}" media="screen" rel="stylesheet" />
-    <link th:href="@{/css/blocks/board_tasks_list.css}" media="screen" rel="stylesheet" />
-    <link th:href="@{/css/blocks/board_family_list.css}" media="screen" rel="stylesheet" />
-    <link th:href="@{/css/blocks/footer.css}" media="screen" rel="stylesheet" />
+    <link th:href="@{/css/blocks/board_greeting.css}" media="screen" rel="stylesheet" >
+    <link th:href="@{/css/blocks/board_tasks_list.css}" media="screen" rel="stylesheet" >
+    <link th:href="@{/css/blocks/board_family_list.css}" media="screen" rel="stylesheet" >
+    <link th:href="@{/css/blocks/footer.css}" media="screen" rel="stylesheet" >
+    <link th:href="@{/css/blocks/header.css}" media="screen" rel="stylesheet" >
 
-    <link th:href="@{/css/blocks/header.css}" media="screen" rel="stylesheet" />
-
-    <link th:href="@{/css/blocks/base.css}" media="screen" rel="stylesheet" />
-    <link th:href="@{/css/blocks/reset.css}" rel="stylesheet" />
-    <link th:href="@{/css/fonts/VAGRounded/stylesheet.css}" rel="stylesheet" />
+    <link th:href="@{/css/blocks/base.css}" media="screen" rel="stylesheet" >
+    <link th:href="@{/css/blocks/reset.css}" rel="stylesheet" >
+    <link th:href="@{/css/fonts/VAGRounded/stylesheet.css}" rel="stylesheet" >
 
     
     <link rel="stylesheet" href="css/blocks/header.css">
@@ -33,8 +32,6 @@
     <link rel="stylesheet" href="css/fonts/VAGRounded/stylesheet.css">
 </head>
 
-
-
 <body>
     <header class="header">
         <div class="container">
@@ -47,15 +44,15 @@
                     <ul class="">
                         <li><a th:href="@{/}">Главная</a></li>
                         <li><a href="#" class= "link__active">Кабинет</a></li>
-                        <li><a href="#">Семья</a></li>
-                        <li><a th:href="@{/api/v1/tasks/all}">Задачи</a></li>
+                        <li><a th:href="@{/api/v1/family}">Семья</a></li>
+                        <li><a th:href="@{/api/v1/tasks}">Задачи</a></li>
                         <li><a href="#">Статистика</a></li>
                     </ul>
                 </nav>
                 <div class="header-login">
 
-                    <a  class="btn__signin btn-default" href="/app/register">Регистрация</a>
-                    <a class="btn btn-default" href="/app/auth">Вход</a>
+                    <a  class="btn__signin btn-default" th:href="@{/register}">Регистрация</a>
+                    <a class="btn btn-default" th:href="@{/}">Выход</a>
 
                 </div>
             </div>
@@ -76,13 +73,13 @@
 
                             <div class="board greeting__board greeting">
 
-                                <h1 class="header__h1 board__header__h1 greeting__board__header" >Добро пожаловать, Parent 1!</h1>
+                                <h1 class="header__h1 board__header__h1 greeting__board__header" th:text="${'Добро пожаловать, ' + user.getPeopleGroups().getName() + ' !'}">Добро пожаловать, Parent XXX!</h1>
 
                                 <div class="item first__item create__new__task__item">
 
                                      <!-- <img th:src="@{img/myImage.jpg}" alt=""/>  -->
                                      <!-- th:href="@{/url/url}" -->
-                                    <a href="#" class="btn__link create__new__task__link">
+                                    <a href="/app/api/v1/tasks" class="btn__link create__new__task__link">
 
                                         <img src="content/img/Icon_3.svg" class="icons create__new__task__icon" alt="task-photo" th:src="@{/content/img/Icon_3.svg}"/>
                                    
@@ -161,7 +158,7 @@
                                 <h1 class="header__h1 board__header family__list__board__header">Семья:</h1>
 
                                 <!-- Каторчка задач в цикле, получение из БД чере ТЛ -->
-                                <div class="list family__list" th:each="t : ${tasks}">
+                                <div class="list family__list" th:each="f : ${myFamily}">
 
                                     <!-- Карточка задачи -->
                                     <div class="card card__family">
@@ -172,10 +169,10 @@
                                             <div class="card__header__text family__card__headerandtext">
 
                                                 <!-- Заголовок карточки -->
-                                                <h1 class="card__header__h1 family__card__header__h1" th:text="${t.title}">Имя ребнка</h1>
+                                                <h1 class="card__header__h1 family__card__header__h1" th:text="${f.login}">Имя ребнка</h1>
 
                                                 <!-- Текст карточки -->
-                                                <p class="card__text__p family__card__text__p" th:text="${t.taskText}">Количество полученных задач</p>
+                                                <p class="card__text__p family__card__text__p" th:text="${f.peopleGroupName}">Количество полученных задач</p>
 
                                             </div>
 
@@ -183,7 +180,7 @@
                                             <div class="card__span family__card__span family__tasks__span">
 
                                                 <!-- Оценка карточки -->
-                                                <span class="number_span tasks__span" th:text="${t.wages}">2</span>
+                                                <span class="number_span tasks__span" th:text="${f.executingTasksListSize}">2</span>
 
                                             </div>
 
