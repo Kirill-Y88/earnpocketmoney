@@ -1,25 +1,23 @@
 package ru.coolteam.earnpocketmoney.models;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "wallets")
+@Table(name = "parents")
 @Data
 @NoArgsConstructor
-public class Wallet {
+public class Parent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column
-    private Long value;
+    private String login;
 
-    public Wallet(Long value) {
-        this.value = value;
-    }
+    @Column
+    private String password;
 }
