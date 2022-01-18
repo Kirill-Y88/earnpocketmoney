@@ -1,7 +1,6 @@
 package ru.coolteam.earnpocketmoney.controllers;
 
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,23 +103,23 @@ public class TaskController {
 //       return "tasks";
 //   }
 
-    @GetMapping("/tasks")
-    public String createTask(Principal principal, Model model) {
-        User user = userService.findByLogin(principal.getName());
-        Role role = roleRepository.findByRole("ROLE_CHILDREN");
+   @GetMapping("/tasks")
+   public String createTask(Principal principal, Model model) {
+       User user = userService.findByLogin(principal.getName());
+       Role role = roleRepository.findByRole("ROLE_CHILDREN");
 
-        List<UserInfo> userInfoList = userService.findAllByPeopleGroupsAndRole(user.getPeopleGroups(), role)
-                .stream()
-                .map(UserInfo::new)
-                .collect(Collectors.toList());
-        model.addAttribute("users" , userInfoList);
+       List<UserInfo> userInfoList = userService.findAllByPeopleGroupsAndRole(user.getPeopleGroups(), role)
+               .stream()
+               .map(UserInfo::new)
+               .collect(Collectors.toList());
+       model.addAttribute("users" , userInfoList);
 
-        TaskForm taskForm = new TaskForm();
-        taskForm.setWages(5L);
-        model.addAttribute("taskForm", taskForm);
+       TaskForm taskForm = new TaskForm();
+       taskForm.setWages(5L);
+       model.addAttribute("taskForm", taskForm);
 
-        return "tasks";
-    }
+       return "tasks";
+   }
 
 
     @PostMapping("/tasks")
@@ -130,12 +129,12 @@ public class TaskController {
         }
         User user = userService.findByLogin(principal.getName());
         User userExecutingTask = null;
-        if(taskForm.getUserExecutingTask()!=null){
+        if(!taskForm.getUserExecutingTask().equals("")){
             userExecutingTask = userService.findByLogin(taskForm.getUserExecutingTask());
         }
 
         //TODO исправить ручное введение стоимости!!
-        taskForm.setWages(5L);
+       // taskForm.setWages(5L);
 
         taskService.createTask(taskForm.getTitle(),
                 taskForm.getTaskText(),

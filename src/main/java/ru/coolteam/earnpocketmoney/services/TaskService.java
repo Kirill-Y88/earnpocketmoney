@@ -1,7 +1,6 @@
 package ru.coolteam.earnpocketmoney.services;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.coolteam.earnpocketmoney.models.*;
 import ru.coolteam.earnpocketmoney.repositories.PeopleGroupsRepository;
@@ -92,6 +91,12 @@ public class TaskService {
         Task task = taskRepository.findTaskByTitle(title).get();
         taskRepository.delete(task);
         return true;
+    }
+
+    public Task update (Task task){
+        LocalDateTime localDateTime = LocalDateTime.now();
+        task.setUpdatedAt(localDateTime);
+        return taskRepository.save(task);
     }
 
 
