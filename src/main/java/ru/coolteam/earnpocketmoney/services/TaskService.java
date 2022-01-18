@@ -15,6 +15,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class TaskService {
+
     private final TaskRepository taskRepository;
     private final PeopleGroupsRepository peopleGroupsRepository;
     private final UserRepository userRepository;
@@ -32,12 +33,24 @@ public class TaskService {
         return taskRepository.findTaskByUserCreatingTask_PeopleGroups(peopleGroupsRepository.findByName(groupName));
     }
 
+    public List<Task> getAllExecutingTasksByPeopleGroups (String groupName){
+        return taskRepository.findAllByUserExecutingTask_PeopleGroups(peopleGroupsRepository.findByName(groupName));
+    }
+
+//    public List<Task> getAllTasksByUserCreatingTask (String login){
+//        return taskRepository.findTaskByUserCreatingTask(userRepository.findByLogin(login));
+//    }
+//
+//    public List<Task> getAllTasksByUserExecutingTask (String login){
+//        return taskRepository.findTaskByUserExecutingTask(userRepository.findByLogin(login));
+//    }
+
     public List<Task> getAllTasksByUserCreatingTask (String login){
-        return taskRepository.findTaskByUserCreatingTask(userRepository.findByLogin(login));
+        return taskRepository.findTaskByUserCreatingTask(userRepository.findByLogin(login).orElseThrow());
     }
 
     public List<Task> getAllTasksByUserExecutingTask (String login){
-        return taskRepository.findTaskByUserExecutingTask(userRepository.findByLogin(login));
+        return taskRepository.findTaskByUserExecutingTask(userRepository.findByLogin(login).orElseThrow());
     }
 
     public Task createTask (String title,
@@ -78,6 +91,12 @@ public class TaskService {
         Task task = taskRepository.findTaskByTitle(title).get();
         taskRepository.delete(task);
         return true;
+    }
+
+    public Task update (Task task){
+        LocalDateTime localDateTime = LocalDateTime.now();
+        task.setUpdatedAt(localDateTime);
+        return taskRepository.save(task);
     }
 
 

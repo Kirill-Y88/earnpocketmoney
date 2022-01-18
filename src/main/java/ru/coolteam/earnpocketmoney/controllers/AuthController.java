@@ -2,43 +2,111 @@ package ru.coolteam.earnpocketmoney.controllers;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import ru.coolteam.earnpocketmoney.authorization.AuthRequest;
-import ru.coolteam.earnpocketmoney.authorization.AuthResponse;
-import ru.coolteam.earnpocketmoney.authorization.RegistrationRequest;
+import ru.coolteam.earnpocketmoney.authorization.CustomUserDetails;
+import ru.coolteam.earnpocketmoney.authorization.CustomUserDetailsService;
 import ru.coolteam.earnpocketmoney.authorization.jwt.JwtProvider;
+import ru.coolteam.earnpocketmoney.dtos.UserInfo;
 import ru.coolteam.earnpocketmoney.models.*;
 import ru.coolteam.earnpocketmoney.repositories.RoleRepository;
+import ru.coolteam.earnpocketmoney.services.PeopleGroupsService;
 import ru.coolteam.earnpocketmoney.services.UserService;
+import ru.coolteam.earnpocketmoney.services.WalletService;
 
-import javax.validation.Valid;
-
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class AuthController {
 
     private final UserService userService;
     private final JwtProvider jwtProvider;
     private final RoleRepository roleRepository;
+    private final WalletService walletService;
+    private final PeopleGroupsService peopleGroupsService;
 
-    @PostMapping("/register")
-    public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
-        User u = new User();
-        Role r = roleRepository.findByRole(registrationRequest.getRole());
-        u.setPassword(registrationRequest.getPassword());
-        u.setLogin(registrationRequest.getLogin());
-        u.setRole(r);
-        userService.saveUser(u);
-        return "OK";
+    private final CustomUserDetailsService customUserDetailsService;
+    private final AuthenticationManager authenticationManager;
+
+    @GetMapping("/register")
+    public String registration(Model model) {
+        model.addAttribute("userForm", new UserInfo());
+        return "registration";
     }
 
+    @PostMapping("/register")
+    public String registration(@ModelAttribute("userForm") UserInfo userForm,
+                               BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+        User user = new User();
+        Wallet wallet = new Wallet(12L);
+        walletService.saveWallet(wallet);
+        PeopleGroups peopleGroups = peopleGroupsService.findByName(userForm.getPeopleGroupName());
+        if(peopleGroups==null){
+            peopleGroups = peopleGroupsService.savePeopleGroups(new PeopleGroups(userForm.getPeopleGroupName()));
+        }else {
+            user.setPeopleGroups(peopleGroups);
+        }
+
+        Role role = roleRepository.findByRole(userForm.getRole());
+        user.setLogin(userForm.getLogin());
+        user.setPassword(userForm.getPassword());
+        user.setPeopleGroups(peopleGroups);
+        user.setRole(role);
+        user.setWallet(wallet);
+        userService.saveUser(user);
+
+        CustomUserDetails userDetails = CustomUserDetails.fromUserEntityToCustomUserDetails(user);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails,
+                userForm.getPassword(),
+                userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        //TODO необходимо изучить класс authenticationManager да и секьюрити в целом, весь моск вынес мне вчера..
+      //  authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+        return "redirect:/api/v1/cabinet";
+    }
+
+    @GetMapping("/auth")
+    public String authentication(Model model) {
+        model.addAttribute("userForm", new User());
+        return "login";
+    }
+
+
     @PostMapping("/auth")
-    public AuthResponse auth(@RequestBody AuthRequest request) {
-        User user = userService.findByLoginAndPassword(request.getLogin(), request.getPassword());
-        String token = jwtProvider.generateToken(user.getLogin());
-        return new AuthResponse(token);
+    public String authentication(@ModelAttribute("userForm") User userForm) {
+
+        CustomUserDetails userDetails = customUserDetailsService.loadUserByUsername(userForm.getLogin());
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails,
+                userForm.getPassword(),
+                userDetails.getAuthorities());
+
+        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+        if (usernamePasswordAuthenticationToken.isAuthenticated()) {
+            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+//          Проверка авторизации
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String username;
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails)principal).getUsername();
+            } else {
+                username = principal.toString();
+            }
+            System.out.println(principal.getClass());
+            System.out.println(username);
+        }
+        return "redirect:/api/v1/cabinet";
     }
 }

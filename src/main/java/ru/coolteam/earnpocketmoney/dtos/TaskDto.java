@@ -2,15 +2,14 @@ package ru.coolteam.earnpocketmoney.dtos;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.coolteam.earnpocketmoney.models.Status;
 import ru.coolteam.earnpocketmoney.models.Task;
-import ru.coolteam.earnpocketmoney.models.User;
 
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 public class TaskDto {
+    private Long id;
     private String title;
     private String taskText;
     private LocalDateTime createdAt;
@@ -19,9 +18,10 @@ public class TaskDto {
     private UserDto userExecutingTask;
     private StatusDto status;
     private Long wages;
-   // private Integer cost;
+//    private Integer cost;
 
     public TaskDto(Task task) {
+        this.id = task.getId();
         this.title = task.getTitle();
         this.taskText = task.getTaskText();
         this.createdAt = task.getCreatedAt();

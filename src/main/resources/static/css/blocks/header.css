@@ -26,7 +26,7 @@
 }
 
 
-/*задаем горизонтальное распложение списков (Li) в листе (Ul) */
+/*задаем горизонтальное расположение списков (Li) в листе (Ul) */
 .header-nav ul {
     display: flex;
 }
@@ -71,43 +71,11 @@
 
 /*настройка цвета и плавности перехода цвета ссылок (a) в логине (Login)*/
 .header-login a {
-    color: #000;
+    color: #292929;
     transition: color 0.2s ease;
 }
-
 
 /*настройка цвета при наведении на ссылку (a) в логине (Login)*/
 .header-login a:hover {
     color: #01996D;
-}
-
-/**/
-.btn, a.btn {
-    display: inline-block;
-
-    /*один из вариантов выравнивания текста внутри кнопки */
-    /* height: 51px;
-    line-height: 51px; */
-
-    /*выравнивание текста внутри кнопки*/
-    min-height: 51px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 1;
-
-    padding-left: 50px;
-    padding-right: 50px;
-    background-color: #01996D;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 400;
-    border-radius: 4px;
-    transition: opacity 0.2s ease;
-}
-
-/**/
-.btn:hover, a.btn:hover {
-    opacity: 0.8;
-    color: #fff;
 }

@@ -1,14 +1,14 @@
 package ru.coolteam.earnpocketmoney.models;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 @Data
-@NoArgsConstructor
+//@NoArgsConstructor
 public class User {
 
     @Id
@@ -16,14 +16,20 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column
+    @Column(name = "login")
     private String login;
 
-    @Column
+    @Column(name = "password")
     private String password;
 
-    @Column
-    private String name;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "username")
+    private String username;
+
+    @Transient
+    private String passwordConfirm;
 
     @ManyToOne
     @JoinColumn(name = "id_role")
@@ -36,6 +42,13 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "id_people_groups")
     private PeopleGroups peopleGroups;
+
+    @OneToMany(mappedBy = "userCreatingTask")
+    private List<Task>  creatingTasksList;
+
+    @OneToMany(mappedBy = "userExecutingTask")
+    private List<Task>  executingTasksList;
+
 
 
 

@@ -1,6 +1,5 @@
 package ru.coolteam.earnpocketmoney.models;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -45,6 +44,4 @@ public class Bonus {
 
     @Column(name = "getting_status")
     private Boolean gettingStatus;
-
-
 }

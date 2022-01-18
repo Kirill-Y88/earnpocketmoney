@@ -9,4 +9,5 @@ import ru.coolteam.earnpocketmoney.models.PeopleGroups;
 public interface PeopleGroupsRepository extends JpaRepository< PeopleGroups, Long> {
     PeopleGroups findByName (String groupName);
 
+
 }
