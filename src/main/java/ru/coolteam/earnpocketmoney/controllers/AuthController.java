@@ -75,8 +75,8 @@ public class AuthController {
                 userForm.getPassword(),
                 userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-        //TODO необходимо изучить класс authenticationManager да и секьюрити в целом, весь моск вынес мне вчера..
-      //  authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+
 
         return "redirect:/api/v1/cabinet";
     }
