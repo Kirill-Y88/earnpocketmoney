@@ -76,8 +76,6 @@ public class AuthController {
                 userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
-
-
         return "redirect:/api/v1/cabinet";
     }
 
